@@ -1,0 +1,47 @@
+#!/usr/bin/env bash #<!--
+cat >/dev/null <<EOF
+#-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>curl | sh me!</title>
+    <meta name="description" content="This site is a valid shell script" />
+    <meta name="theme-color" content="#db325c" />
+    <style>
+      div.container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        overflow: hidden;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: white;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p>This page is a valid shell script that outputs itself!</p>
+      <p><code>$ curl https://curlpipesh.me | sh</code></p>
+    </div>
+  </body>
+</html>
+
+<!--
+EOF
+
+
+curl https://curlpipesh.me
+
+
+
+#-->

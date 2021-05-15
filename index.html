@@ -32,6 +32,7 @@ cat >/dev/null <<EOF
     <div class="container">
       <p>This page is a valid shell script.</p>
       <p><code>$ curl -s https://curlpipesh.me | sh</code></p>
+      <p>Or <a href="view-source:https://curlpipesh.me/">view source</a>, it won't bite!</p>
       <p>Why? Because it's fun :D</p>
     </div>
   </body>
@@ -80,6 +81,15 @@ This ensures that the page is both well-formed HTML *and* a valid shell script.
 
 It should! In fact, it actually does render! This is just hidden behind a div
 that covers the entire page with a white background ^^;
+
+## But how do you have E​O​F and <​!​-​- rendering in this? Shouldn't they get
+   parsed too?
+
+They should! But look closely -- those aren't the symbols you think they are!
+If you use a font with ligatures, it might even be lying to you. There's
+zero-width spaces between each character of the "dangerous" tokens to prevent
+them from being consumed. The specific character used is "​" U+200B Zero Width
+Space. See https://unicode-table.com/en/200B/ for more info.
 
 EOF
 

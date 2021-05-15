@@ -30,8 +30,9 @@ cat >/dev/null <<EOF
   </head>
   <body>
     <div class="container">
-      <p>This page is a valid shell script that outputs itself!</p>
+      <p>This page is a valid shell script.</p>
       <p><code>$ curl https://curlpipesh.me | sh</code></p>
+      <p>Why? Because it's fun :D;</p>
     </div>
   </body>
 </html>
@@ -40,7 +41,47 @@ cat >/dev/null <<EOF
 EOF
 
 
-curl https://curlpipesh.me
+cat <<EOF
+
+# curlpipesh.me
+
+A website that's also a valid shell script.
+
+## How does it work?
+
+At the very top of the file is the basic prelude:
+
+  #!/usr/bin/env bash #<!--
+
+By having this at the very top, we let the OS know that it's a shell script and
+that it should be run in bash. This is immediately followed by an HTML comment
+to prevent the next lines from printing:
+
+  cat >/dev/null <<EOF
+  #-->
+
+cat(1) is used here to just consume the entire page to bash trying to parse all
+the HTML and dying. At the end of the page, we start another HTML commend and
+then stop the consuming cat(1):
+
+  <!--
+  E​O​F
+
+And once we've done that, we're inside an HTML commend and can just write
+whatever we want without it rendering in the browser!
+
+Finally, we end it out with a bash-commented HTML comment end:
+
+  #-​-​>
+
+This ensures that the page is both well-formed HTML *and* a valid shell script.
+
+## But shouldn't the shebang render?
+
+It should! In fact, it actually does render! This is just hidden behind a div
+that covers the entire page with a white background ^^;
+
+EOF
 
 
 
